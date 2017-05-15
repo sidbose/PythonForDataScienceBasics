@@ -6,9 +6,8 @@ import numpy as np
 # TODO:
 # Load up the dataset, setting correct header labels.
 #
-# .. your code here ..
-
-
+column_list = ['education', 'age', 'capital-gain', 'race', 'capital-loss', 'hours-per-week', 'sex', 'classification']
+df = pd.read_csv('Datasets/census.data', sep=',', header=None, names=column_list, na_values=['?'])
 
 #
 # TODO:
@@ -23,9 +22,13 @@ import numpy as np
 # should be represented as nans, you can convert them using
 # na_values when loading the dataframe.
 #
-# .. your code here ..
-
-
+print df['education'].unique()
+print df['race'].unique()
+print df['sex'].unique()
+print df['classification'].unique()
+print df['age'].unique()
+print df['hours-per-week'].unique()
+print(df.dtypes)
 
 #
 # TODO:
@@ -38,14 +41,16 @@ import numpy as np
 # what makes more sense generally---to represent such features with a
 # continuous numeric type... or a series of categories?
 #
-# .. your code here ..
-
-
+ordered_education = ['Preschool', '1st-4th', '5th-6th', '7th-8th', '9th', '10th', '11th', '12th', 'Some-college', 'Bachelors',  'HS-grad', 'Masters', 'Doctorate']
+df['education'] = df['education'].astype("category", ordered=True, categories=ordered_education).cat.codes
+df['race'] = df['race'].astype('category').cat.codes
+df['sex'] = df['sex'].astype('category').cat.codes
+df = pd.get_dummies(df, columns=['classification'])
 
 #
 # TODO:
 # Print out your dataframe
 #
-# .. your code here ..
+print df.head(20)
 
 

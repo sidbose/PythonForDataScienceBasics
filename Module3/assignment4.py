@@ -13,26 +13,26 @@ plt.style.use('ggplot')
 # TODO: Load up the Seeds Dataset into a Dataframe
 # It's located at 'Datasets/wheat.data'
 # 
-# .. your code here ..
-
+seed_dataset = pd.read_csv('Datasets/wheat.data', index_col=0)
+print(seed_dataset.head())
 
 
 #
 # TODO: Drop the 'id' feature, if you included it as a feature
 # (Hint: You shouldn't have)
 # Also get rid of the 'area' and 'perimeter' features
-# 
-# .. your code here ..
-
-
+#
+seed_dataset = seed_dataset.drop(labels=['area', 'perimeter'], axis=1)
+print(seed_dataset.head())
 
 #
 # TODO: Plot a parallel coordinates chart grouped by
 # the 'wheat_type' feature. Be sure to set the optional
 # display parameter alpha to 0.4
-# 
-# .. your code here ..
-
+#
+# Parallel Coordinates Start Here:
+plt.figure()
+parallel_coordinates(seed_dataset, 'wheat_type')
 
 
 plt.show()

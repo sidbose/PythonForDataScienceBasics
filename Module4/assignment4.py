@@ -51,7 +51,11 @@ for i in range(num_images):
 # x is the principal component you want displayed on the x-axis, Can be 0 or 1
 # y is the principal component you want displayed on the y-axis, Can be 1 or 2
 #
-# .. your code here ..
+from sklearn.decomposition import PCA
+pca = PCA(n_components=3, svd_solver='full')
+pca.fit(df)
+transformed_data = pca.transform(df)
+Plot2D(transformed_data, 'PCA', 1, 2)
 
 
 #
@@ -59,14 +63,34 @@ for i in range(num_images):
 # to THREE components. Once you've done that, call Plot2D using
 # the first two components.
 #
-# .. your code here ..
+from sklearn import manifold
+iso = manifold.Isomap(n_neighbors=10, n_components=3)
+iso.fit(df)
+transformed_data_isomap = iso.transform(df)
+Plot2D(transformed_data_isomap, 'IsoMap', 1, 2)
 
 
 #
 # TODO: If you're up for a challenge, draw your dataframes in 3D
 # Even if you're not, just do it anyway.
 #
-# .. your code here ..
+# Render PCA
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.set_title('IsoMap 3D')
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+ax.scatter(transformed_data[:,0], transformed_data[:,1], transformed_data[:,2], c='red', marker='.', alpha=0.75)
+
+# Render IsoMap
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.set_title('IsoMap 3D')
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+ax.scatter(transformed_data_isomap[:,0], transformed_data_isomap[:,1], transformed_data_isomap[:,2], c='green', marker='.', alpha=0.75)
 
 
 plt.show()

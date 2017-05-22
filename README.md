@@ -1,11 +1,4 @@
-# DAT210x
-Programming with Python for Data Science Microsoft
-By Authman Apatira
-
-## Current Offering
-
-If you haven't already, [join the course](https://www.edx.org/course/programming-python-data-science-microsoft-dat210x-0)!
-
+Programming with Python for Data Science
 
 ## Getting Started
 
